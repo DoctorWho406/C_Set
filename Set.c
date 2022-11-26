@@ -45,4 +45,18 @@ int main() {
             }
         }
     }
+
+    set_insert(set, "World", 5);
+    printf("==========IINSERT DUPLICATE SET==========\n");
+    index = 0;
+    for (size_t index = 0; index < set->hashmap_size; index++) {
+        if ((head_node = current_nodes[index])) {
+            printf("Index [%llu]:\n", index);
+            SET_NODE *current_node = head_node;
+            while(current_node) {
+                printf("\t%s\n", current_node->key);
+                current_node = current_node->next;
+            }
+        }
+    }
 }

@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 #include "Functions.h"
 #include "Hash.h"
 
@@ -35,6 +36,16 @@ SET_NODE *set_insert(SET_TABLE *table, const char *key, const size_t key_len) {
         return table->nodes[index];
     }
 
+    while(head->next) {
+        if(strcmp(head->key, key) == 0) {
+            return NULL;
+        }
+        head = head->next;
+    }
+    if(strcmp(head->key, key) == 0) {
+        return NULL;
+    }
+
     SET_NODE *new_item = malloc(sizeof(SET_NODE));
     if(!new_item) {
         return NULL;
@@ -43,9 +54,6 @@ SET_NODE *set_insert(SET_TABLE *table, const char *key, const size_t key_len) {
     new_item->key_len = key_len;
     new_item->next = NULL;
 
-    while(head->next) {
-        head = head->next;
-    }
     head->next = new_item;
     return head->next;
 }
