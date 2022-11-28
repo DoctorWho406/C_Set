@@ -1,16 +1,13 @@
 #include <stdio.h>
 #include "ListItem.h"
 
-#define SET_NODE struct set_node
-#define SET_TABLE struct set_table
-
-SET_NODE {
-    LIST_NODE *next;
+typedef struct set_node{
+    list_node_t *next;
     size_t key_len;
     const char *key;
-};
+} set_node_t;
 
-SET_TABLE {
-    SET_NODE **nodes;
+typedef struct set_table {
+    set_node_t **nodes;
     size_t hashmap_size;
-};
+} set_table_t;

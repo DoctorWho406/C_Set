@@ -1,12 +1,12 @@
-#include <stddef.h>
 #include "ListItem.h"
+#define INIT_LIST_NODE
 
-LIST_NODE *list_get_tail(LIST_NODE **head);
+list_node_t *list_get_tail(list_node_t **head);
 
-LIST_NODE *list_append(LIST_NODE **head, LIST_NODE *item);
+list_node_t *list_append(list_node_t **head, list_node_t *item);
 
-LIST_NODE *list_pop(LIST_NODE **head);
+list_node_t *list_pop(list_node_t **head);
 
-LIST_NODE *list_remove(LIST_NODE **head, LIST_NODE *item);
+list_node_t *list_remove(list_node_t **head, list_node_t *item);
 
-LIST_NODE *list_reverse(LIST_NODE **head);
+list_node_t *list_reverse(list_node_t **head);

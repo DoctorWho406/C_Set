@@ -1,3 +1,7 @@
-#define LIST_NODE struct list_node
+typedef struct list_node list_node_t;
 
-struct list_node;
+#ifdef INIT_LIST_NODE
+struct list_node {
+    struct list_node *next;
+};
+#endif

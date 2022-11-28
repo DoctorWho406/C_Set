@@ -7,13 +7,9 @@
 #include <stddef.h>
 #include "ListItem.h"
 
-LIST_NODE {
-    struct list_node *next;
-};
-
-EXPORTFUNC LIST_NODE *list_get_tail(LIST_NODE **head) {
-    LIST_NODE *current_node = *head;
-    LIST_NODE *last_node = NULL;
+EXPORTFUNC list_node_t *list_get_tail(list_node_t **head) {
+    list_node_t *current_node = *head;
+    list_node_t *last_node = NULL;
     while (current_node) {
         last_node = current_node;
         current_node = current_node->next;
@@ -21,8 +17,8 @@ EXPORTFUNC LIST_NODE *list_get_tail(LIST_NODE **head) {
     return last_node;
 }
 
-EXPORTFUNC LIST_NODE *list_append(LIST_NODE **head, LIST_NODE *item) {
-    LIST_NODE *tail = list_get_tail(head);
+EXPORTFUNC list_node_t *list_append(list_node_t **head, list_node_t *item) {
+    list_node_t *tail = list_get_tail(head);
     if (!tail) {
         *head = item;
     } else {
@@ -32,8 +28,8 @@ EXPORTFUNC LIST_NODE *list_append(LIST_NODE **head, LIST_NODE *item) {
     return item;
 }
 
-EXPORTFUNC LIST_NODE *list_pop(LIST_NODE **head) {
-    LIST_NODE *current_head = *head;
+EXPORTFUNC list_node_t *list_pop(list_node_t **head) {
+    list_node_t *current_head = *head;
     if (!current_head) {
         return NULL;
     }
@@ -42,25 +38,25 @@ EXPORTFUNC LIST_NODE *list_pop(LIST_NODE **head) {
     return current_head;
 }
 
-EXPORTFUNC LIST_NODE *list_remove(LIST_NODE **head, LIST_NODE *item) {
-    LIST_NODE *current_node = *head;
+EXPORTFUNC list_node_t *list_remove(list_node_t **head, list_node_t *item) {
+    list_node_t *current_node = *head;
     while(current_node->next != item) {
         current_node = current_node->next;
     }
     if(!current_node) { // scroll all and not find item
         return NULL;
     }
-    LIST_NODE *removed = current_node->next;
+    list_node_t *removed = current_node->next;
     current_node->next = current_node->next->next;
     removed->next = NULL;
     return removed;
 }
 
 
-EXPORTFUNC LIST_NODE *list_reverse(LIST_NODE **head) {
-    LIST_NODE *curr_node = *head;
-    LIST_NODE *prev_node = NULL;
-    LIST_NODE *next_node = NULL;
+EXPORTFUNC list_node_t *list_reverse(list_node_t **head) {
+    list_node_t *curr_node = *head;
+    list_node_t *prev_node = NULL;
+    list_node_t *next_node = NULL;
 
     while(curr_node) {
         next_node = curr_node->next;
