@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Hash.h"
-#include "ListFunctions.h"
 #include "Item.h"
+#include "ListFunctions.h"
 
 set_table_t *set_table_new(const size_t hashmap_size) {
     set_table_t *table = malloc(sizeof(set_table_t));
@@ -19,7 +19,7 @@ set_table_t *set_table_new(const size_t hashmap_size) {
     return table;
 }
 
-struct set_node *set_table_search(struct set_table *table, const char *key,  const size_t key_len) {
+set_node_t *set_table_search(set_table_t *table, const char *key,  const size_t key_len) {
     size_t hash = djb33x_hash(key, key_len);
     size_t index = hash % table->hashmap_size;
 
