@@ -25,10 +25,10 @@ list_node_t *list_append(list_node_t **head, list_node_t *item) {
 
 list_node_t *list_remove(list_node_t **head, list_node_t *item) {
     list_node_t *current_node = *head;
-    while(current_node->next != item) {
+    while (current_node->next != item) {
         current_node = current_node->next;
     }
-    if(!current_node) { // scroll all and not find item
+    if (!current_node) { // scroll all and not find item
         return NULL;
     }
     list_node_t *removed = current_node->next;
