@@ -11,6 +11,7 @@
 *.ilk
 *.map
 *.exp
+!library/linkedlist.exp
 
 # Precompiled Headers
 *.gch
@@ -18,17 +19,20 @@
 
 # Libraries
 *.lib
+!library/linkedlist.lib
 *.a
 *.la
 *.lo
 
 # Shared objects (inc. Windows DLLs)
 *.dll
+!library/linkedlist.dll
 *.so
 *.so.*
 *.dylib
 
 # Executables
+bin/
 *.exe
 *.out
 *.app
