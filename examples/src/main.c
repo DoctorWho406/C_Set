@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Set.h"
-#include "StringItem.h"
+#include "set.h"
+#include "string_item.h"
 
 #define to_table (set_table_t *)
 #define to_node (set_node_t *)
 #define to_string_item (string_item_t *)
 
 int main() {
-    set_table_t *my_set = set_table_new(2);
-    if(!my_set) {
+    set_table_t *my_set;
+    if(set_table_create(&my_set, 2) != 0) {
         puts("Erorre nella creazione della tabella");
         return -1;
     }
@@ -83,11 +83,11 @@ int main() {
         }
     }
 
-    string_item_t *inserted_item = to_string_item set_table_insert(my_set, to_node string_item_new("World"), 5);
-    if(!inserted_item) {
+    string_item_t *item_to_insert = string_item_new("World");
+    if(set_table_insert(my_set, to_node item_to_insert, 5) != 0) {
         puts("Node World not inserted");
     } else {
-        printf("Inserted %s\n", inserted_item->string);
+        printf("Inserted %s\n", item_to_insert->string);
     }
     printf("==========INSERT DUPLICATE SET==========\n");
 
@@ -116,5 +116,6 @@ int main() {
     free(item_to_search);
     free(finded);
 
+    set_table_destroy(my_set);
     return 0;
 }
