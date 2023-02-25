@@ -14,4 +14,6 @@ IF %ERRORLEVEL% EQU 0 (
     MD "%BAT_BASE_PATH%set\include"
 
     COPY /Y "%BAT_BASE_PATH%include\*.h" "%BAT_BASE_PATH%set\include"
+
+    COPY /Y "%BAT_BASE_PATH%library\linkedlist\lib\*.dll" "%BAT_BASE_PATH%set\lib"
 )

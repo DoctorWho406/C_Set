@@ -2,16 +2,15 @@
 Simple implementation of Set in C
 
 # Usage
-You could create a dll using `make.bat` (it require clang.exe)
+You could create a dll using `make.bat` (it require clang.exe).<br>
+This will generate a ready-to-use directory called `set` containing the necessary libraries and includes.
 
 ## Command with clang.exe
 ```
-clang -shared -o library\hash.dll src\Hash.c
-
-clang -shared -o library\set.dll -I include src\Set.c -l hash -l linkedlist -L library
+clang -shared -o set\lib\set.dll -I include -I library\linkedlist\include -L library\linkedlist\lib -l linkedlist src\*.c
 ```
 N.B.<br>
-It requires that the `library` folder exists and contains `linkedlist` library
+It requires that the `set/lib` folder exists
 
 # API
 
@@ -38,19 +37,23 @@ struct string_item {
     </thead>
     <tbody>
         <tr>
-            <td>set_table_new</td>
+            <td rowspan=2>set_table_create</td>
+            <td>set_table_t**</td>
+            <td>Pointer to set</td>
+            <td rowspan=2>int</td>
+            <td rowspan=2>0 on succes, neagtive number on failure</td>
+            <td rowspan=2>Create the set_table stucture with desired hasmap size</td>
+        </tr>
+        <tr>
             <td>size_t</td>
             <td>The desired size of the hashmap</td>
-            <td>set_table_t*</td>
-            <td>Pointer to the set_table created or NULL on failure</td>
-            <td>Create the set_table stucture with desired hasmap size</td>
         </tr>
         <tr>
             <td rowspan=3>set_table_insert</td>
             <td>set_table_t*</td>
             <td>Pointer to the set_table</td>
-            <td rowspan=3>set_node_t*</td>
-            <td rowspan=3>Pointer to the inserted item or NULL on failure</td>
+            <td rowspan=3>int</td>
+            <td rowspan=3>0 on succes, neagtive number on failure</td>
             <td rowspan=3>Adds an item to the set</td>
         </tr>
         <tr>
@@ -93,6 +96,13 @@ struct string_item {
             <td>size_t</td>
             <td>Size of the data to compare in the structure<br/>In the above example the length of the string</td>
         </tr>
+        <tr>
+            <td>set_table_destroy</td>
+            <td>set_node_t*</td>
+            <td>Pointer to the set_table</td>
+            <td colspan=2>void</td>
+            <td>Destory the set and clear all used memory</td>
+        </tr>
     </tbody>
 </table>
 
@@ -102,15 +112,13 @@ Create executable using `example.bat` (it require clang.exe)
 
 ## Command with clang.exe
 ```
-clang -shared -o library\hash.dll src\Hash.c
-
-clang -o examples\bin\Example.exe -I include -I examples\include examples\src\main.c examples\src\StringItem.c src\Set.c -l hash -l linkedlist -L library
+clang -o examples\bin\example.exe -I include -I examples\include -I library\linkedlist\include -L set\lib -lset examples\src\*.c 
 ```
 N.B.<br>
 It requires that the `examples/bin` folder exists.<br/>
-Copy `hash.dll` and `linkedlist.dll` from `library` folder to `examples/bin` folder
+Copy `linkedlist.dll` from `linkedlist\lib` folder and `set.dll` from `set\lib` to `examples/bin` folder
 
 ## Run it
 ```
-./examples/bin/Example.exe
+./examples/bin/example.exe
 ```
