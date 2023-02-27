@@ -11,7 +11,6 @@
 *.ilk
 *.map
 *.exp
-!library/linkedlist.exp
 
 # Precompiled Headers
 *.gch
@@ -19,14 +18,12 @@
 
 # Libraries
 *.lib
-!library/linkedlist.lib
 *.a
 *.la
 *.lo
 
 # Shared objects (inc. Windows DLLs)
 *.dll
-!library/linkedlist.dll
 *.so
 *.so.*
 *.dylib
@@ -57,3 +54,9 @@ dkms.conf
 
 .vscode/*
 !.vscode/clove_unit_settings.json
+
+# Library
+!library/linkedlist/lib/*
+
+# Output library
+/set
